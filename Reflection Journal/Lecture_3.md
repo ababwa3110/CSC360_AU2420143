@@ -3,27 +3,32 @@
 ## Square
 
 ```java
-import javafx.application.Application;
-import javafx.scene.Scene;
-import javafx.scene.layout.StackPane;
-import javafx.scene.paint.Color;
-import javafx.scene.shape.Rectangle;
-import javafx.stage.Stage;
-public class square extends Application {
+import javax.swing.*;
+import java.awt.*;
+
+public class square2 extends JPanel {
+
     @Override
-    public void start(Stage primaryStage) {
-        Rectangle square = new Rectangle(150, 150);
-        square.setFill(Color.TRANSPARENT);
-        square.setStroke(Color.DARKBLUE);
-        square.setStrokeWidth(3);
-        StackPane root = new StackPane(square);
-        Scene scene = new Scene(root, 400, 400);
-        primaryStage.setTitle("Square");
-        primaryStage.setScene(scene);
-        primaryStage.show();
+    protected void paintComponent(Graphics g) {
+        super.paintComponent(g);
+        Graphics2D g2d = (Graphics2D) g;
+        g2d.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
+        g2d.setColor(Color.DARK_GRAY.darker());
+        g2d.setStroke(new BasicStroke(3));
+        int size = 150;
+        int x = (getWidth() - size) / 2;
+        int y = (getHeight() - size) / 2;
+        g2d.drawRect(x, y, size, size);
     }
+
     public static void main(String[] args) {
-        launch(args);
+        SwingUtilities.invokeLater(() -> {
+            JFrame frame = new JFrame("square2");
+            frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+            frame.setSize(400, 400);
+            frame.add(new square2());
+            frame.setVisible(true);
+        });
     }
 }
 ```
@@ -31,27 +36,33 @@ public class square extends Application {
 ## Rectangle
 
 ```java
-import javafx.application.Application;
-import javafx.scene.Scene;
-import javafx.scene.layout.StackPane;
-import javafx.scene.paint.Color;
-import javafx.scene.shape.Rectangle;
-import javafx.stage.Stage;
-public class rectangle extends Application {
+import javax.swing.*;
+import java.awt.*;
+
+public class rectangle2 extends JPanel {
+
     @Override
-    public void start(Stage primaryStage) {
-        Rectangle rectangle = new Rectangle(150, 50);
-        rectangle.setFill(Color.TRANSPARENT);
-        rectangle.setStroke(Color.DARKBLUE);
-        rectangle.setStrokeWidth(3);
-        StackPane root = new StackPane(rectangle);
-        Scene scene = new Scene(root, 400, 400);
-        primaryStage.setTitle("Square");
-        primaryStage.setScene(scene);
-        primaryStage.show();
+    protected void paintComponent(Graphics g) {
+        super.paintComponent(g);
+        Graphics2D g2d = (Graphics2D) g;
+        g2d.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
+        g2d.setColor(Color.DARK_GRAY.darker());
+        g2d.setStroke(new BasicStroke(3));
+        int width = 200;
+        int height = 100;
+        int x = (getWidth() - width) / 2;
+        int y = (getHeight() - height) / 2;
+        g2d.drawRect(x, y, width, height);
     }
+
     public static void main(String[] args) {
-        launch(args);
+        SwingUtilities.invokeLater(() -> {
+            JFrame frame = new JFrame("rectangle2");
+            frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+            frame.setSize(400, 400);
+            frame.add(new rectangle2());
+            frame.setVisible(true);
+        });
     }
 }
 ```
